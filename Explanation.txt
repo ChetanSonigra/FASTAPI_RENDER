@@ -1,0 +1,147 @@
+# "uvicorn main:app --reload" to run api
+# http://127.0.0.1:8000 to get api endpoint. 
+# /docs to get swagger UI /redoc to get REDOC UI
+
+
+# Features: 
+"""
+1. Automatic Documentation
+2. Std Python3
+3. Security and Authentication
+4. Dependency Injection
+5. Testing - 100% coverage
+"""
+
+operation, endpoint, operation function
+
+# Query parameters: 
+# parameters in function which is not used in endpoint.
+# to be used in url with ?param=value
+
+# order of endpoints is important.
+# tags: used to logically categorize endpoints
+# summary & description: info regarding operation. 
+# This shows up in swagger UI. Docstring in function also shows up as description.
+# response description
+
+# Routers: 
+# seperate opeerations into multiple files.
+# share a prefix between multiple operations.
+# share tags.
+
+
+--> Request Body: 
+post method
+Pydantic BaseModel
+fastapi will convert the data (Reads request body json, data validation, data conversion, json schema as output)
+
+--> Parameter Metadata: 
+Information displayed in docs
+Using the Query, Path and Body imports
+Set default value
+Add title and description, alias
+
+--> Validator:
+Validate data passed to parameters.
+Provide a default value.
+Require a value (non-optional parameter) with ... or Ellipsis
+Require minimum length min_length = 10, max_length, regex
+
+--> Providing multiple values for 
+- query parameters
+- define an optional query parameter
+- provide default value
+
+--> Number Validators: 
+gt, ge, lt, le
+
+--> Complex Subtypes:
+List[str], Dict[str,str]
+similarly dict, set,tuple etc.
+custom model subtypes: like BlogModel
+
+
+--> Database Checklist
+
+Database definition - database.Py
+Model definition - models.Py
+Create Database - main.Py
+Schema definition - schemas.Py
+ORM Functionality - db_user.Py
+API Functionality - user.Py
+
+--> Relationship: 
+Retrieve elements from multiple tables in a single request.
+Define Relationship in models
+Add the elements we want to Retrieve in schemas.
+
+
+--> Concepts:
+1. Error Handling:
+    - notify client of an error.
+    - Raising exception stops execution of program.
+    - will contain status and exception msg.
+    - custom exception must inherit from Exception.
+    - provide exception handler
+2. Custom Responses:
+    - std response is a model, list, dict, database model.
+    - we can customize the response object.
+    - no data conversion.
+    why? 
+    - add parameters: headers, Cookies
+    - different types of response - plain text, xml, html, files, streaming
+    - complex decisional logic
+    - better docs
+3. Headers
+    - Add headers in request function definition
+    - Automatic conversion between _ and -
+    - List of headers
+    - Provide custom response headers
+4. Cookies
+    - used to store information on browser
+    - can accept str,list, dict, models etc.
+5. form data
+    - HTML form data  <form>..</form>
+    - application/x-www-form-urlencoded
+    - install python-multipart
+6. CORS
+    - cross origin resource sharing
+    - localhost:8080 <---> localhost:8000 not allowed.
+
+
+--> Authentication:
+    - complex topic
+    - oauth2 with username and password
+    flow: 
+      1. user creates username and password
+      2. make a request to get token using username and password
+      3. use token to make secure requests.
+    - to generate random secret key: openssl rand -hex 32
+
+
+--> Working with files:
+1. File:
+    - declared similar to form fields.
+    - received as bytes.
+    - stored in memory. so limited space.
+2. UploadFile: 
+    - provides more Functionality
+    - stored in memory upto certain size, then on disk
+    - python file like object
+3. Making file statically available from browser
+4. Download files:
+    - provide more logic around file access
+    - provide Security
+
+
+--> Tasks:
+1. Deployment:
+    - free hosting with deta 
+    - minimal application: main.py, requirements.text
+    - space login, space new
+    or
+    - deploy on Render
+2. Debugging:
+    - 
+3. Testing
+4. Logging

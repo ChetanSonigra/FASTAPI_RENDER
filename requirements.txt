@@ -1,1 +1,10 @@
 fastapi[all]
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+passlib
+bcrypt
+python-multipart
+python-jose
+aiofiles
